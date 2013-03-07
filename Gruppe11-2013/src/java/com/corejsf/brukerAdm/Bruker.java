@@ -28,7 +28,11 @@ public class Bruker {
     String passord;
     String fornavn;
     String etternavn;
-    String postNr;
+    int postNr;
+    String gateAdresse;
+    String postSted;
+    String email;
+    int telefon;
     private boolean endret;
 
     public synchronized boolean isEndret() {
@@ -45,15 +49,24 @@ public class Bruker {
         this.passord = "";
         this.fornavn = "";
         this.etternavn = "";
-        this.postNr = "";
+        this.postNr = 0;
+        this.gateAdresse = "";
+        this.postSted = "";
+        this.email = "";
+        this.telefon = 0;
     }
 
-    public Bruker(String brukernavn, String passord, String fornavn, String etternavn, String postNr, String rolle, int i) {
+    public Bruker(String brukernavn, String passord, String fornavn, String etternavn, int postNr,
+            String adresse,String postSted,String email, int telefon, String rolle, int i) {
         this.brukernavn = brukernavn;
         this.passord = passord;
         this.fornavn = fornavn;
         this.etternavn = etternavn;
         this.postNr = postNr;
+        this.gateAdresse = adresse;
+        this.postSted = postSted;
+        this.email = email;
+        this.telefon = telefon;
         this.rolle = rolle;
         endret = false;
     }
@@ -150,13 +163,57 @@ public class Bruker {
         }
     }
 
-    public String getPostNr() {
+    public int getPostNr() {
         return postNr;
     }
 
-    public void setPostNr(String postNr) {
-        if (!(this.postNr.equalsIgnoreCase(postNr))) {
+    public void setPostNr(int postNr) {
+        if (!(this.postNr == postNr)) {
             this.postNr = postNr;
+            setEndret(true);
+        }
+    }
+
+    public String getGateAdresse() {
+        return gateAdresse;
+    }
+
+    public void setGateAdresse(String gateAdresse) {
+        if (!(this.gateAdresse.equalsIgnoreCase(gateAdresse))) {
+            this.gateAdresse = gateAdresse;
+            setEndret(true);
+        }
+    }
+
+    public String getPostSted() {
+        return postSted;
+    }
+
+    public void setPostSted(String postSted) {
+        if (!(this.postSted.equalsIgnoreCase(postSted))) {
+            this.postSted = postSted;
+            setEndret(true);
+        }
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        if (!(this.email.equalsIgnoreCase(email))) {
+            this.email = email;
+            setEndret(true);
+        }
+    }
+
+    public int getTelefon() {
+        return telefon;
+    }
+
+    public void setTelefon(int telefon) {
+        if (!(this.telefon == telefon)) {
+            this.telefon = telefon;
             setEndret(true);
         }
     }
