@@ -236,7 +236,7 @@ public class DBController {
             reg.setString(2, bruker.getPassord());
             reg.setString(3, bruker.getFornavn());
             reg.setString(4, bruker.getEtternavn());
-            reg.setString(5, bruker.getPostNr());
+            reg.setInt(5, bruker.getPostNr());
             reg.executeUpdate();
             conn.getConn().commit();
             fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nyregistrering av bruker fullført!", "ja,Nyregistreing fullført!");
