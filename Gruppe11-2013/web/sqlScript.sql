@@ -18,14 +18,15 @@ DROP TABLE selskaper;
 CREATE TABLE bruker (
 fornavn CHAR(10)  NOT NULL, 
 etternavn CHAR(10)  NOT NULL, 
-brukernavn CHAR(10)  NOT NULL, 
-postnummer CHAR(10), 
+brukernavn CHAR(10)  NOT NULL,  
+passord CHAR(10) NOT NULL,
+postnummer CHAR(10), --(FK1 - BOSTED)
 CONSTRAINT bruker_PK PRIMARY KEY(brukernavn) 
 );
 
 CREATE TABLE rolle (
 rolle CHAR(10)  NOT NULL, 
-brukernavn CHAR(10)  NOT NULL,
+brukernavn CHAR(10)  NOT NULL, --(FK1 - BRUKER)
 CONSTRAINT rolle_PK PRIMARY KEY(rolle, brukernavn)
 );
 
@@ -44,29 +45,29 @@ CONSTRAINT utkjøringsBil_PK PRIMARY KEY(bilnr)
 );
 
 CREATE TABLE selskapKunde (
-brukernavn CHAR(10)  NOT NULL, 
-selskapnr INTEGER  NOT NULL, 
+brukernavn CHAR(10)  NOT NULL, --(FK1 - KUNDE)
+selskapnr INTEGER  NOT NULL, --(FK2 - SELSKAPER)
 CONSTRAINT selskapKunde_PK PRIMARY KEY(brukernavn, selskapnr)
 );
 
 CREATE TABLE utkjøring (
-brukernavn CHAR(10)  NOT NULL, 
-salgsnummer CHAR(10)  NOT NULL, 
-bilnr INTEGER NOT NULL, 
-utkørinKogstatus VARCHAR(10), 
-sjåførBrukernavn CHAR(10)  NOT NULL, 
+brukernavn CHAR(10)  NOT NULL, --(FK1 - ORDRE)
+salgsnummer CHAR(10)  NOT NULL, --(FK2 - ORDRE)
+bilnr INTEGER NOT NULL, --(FK3 - UTKJØRINGSBIL)
+sjåførBrukernavn CHAR(10)  NOT NULL, --(FK4 - SJÅFØRER)
+utkørinKogstatus VARCHAR(10),  
 CONSTRAINT utkjøring_PK PRIMARY KEY(brukernavn, salgsnummer, bilnr, sjåførBrukernavn)
 );
 
 CREATE TABLE salg (
-salgsnummer CHAR(10)  NOT NULL, 
+salgsnummer CHAR(10)  NOT NULL, --(FK1 - ORDRE)
 sumSalg CHAR(10), 
 CONSTRAINT salg_PK PRIMARY KEY(salgsnummer)
 );
 
 
 CREATE TABLE sjåfører (
-brukernavn CHAR(10)  NOT NULL, 
+brukernavn CHAR(10)  NOT NULL, --(FK1 - BRUKER)
 Førekortklasse CHAR(10)  NOT NULL, 
 CONSTRAINT sjåfører_PK PRIMARY KEY(brukernavn)
 );
@@ -78,40 +79,40 @@ CONSTRAINT Bosted_PK PRIMARY KEY(postnummer)
 );
 
 CREATE TABLE ordre (
-brukernavn CHAR(10)  NOT NULL ,
-salgsnummer CHAR(10)  NOT NULL  ,
+brukernavn CHAR(10)  NOT NULL , --(FK1 - SELGERE)
+salgsnummer CHAR(10)  NOT NULL  , --(FK2 - SALG)
 datoEndret DATE,  
 datoLevert DATE,  
 bekreftet DATE,  
-selskapnr INTEGER,
 betaltstatus CHAR(10),
+selskapnr INTEGER, --(FK3 - SELSKAPER)
 CONSTRAINT ordre_PK PRIMARY KEY(brukernavn, salgsnummer)
 );
 
 
 CREATE TABLE retter (
-navn CHAR(10)  NOT NULL, 
 rettnummer CHAR(10)  NOT NULL,
+navn CHAR(10)  NOT NULL, 
 CONSTRAINT retter_PK PRIMARY KEY(rettnummer)
 );
 
 
 CREATE TABLE Kunde (
-brukernavn CHAR(10) NOT NULL, 
+brukernavn CHAR(10) NOT NULL, --(FK1 - BRUKER)
 avslag VARCHAR(10), 
 CONSTRAINT Kunde_PK PRIMARY KEY(brukernavn)
 );
 
 CREATE TABLE ordretabell (
-rettnummer CHAR(10)  NOT NULL,
-selgerbrukernavn CHAR(10)  NOT NULL,
-salgsnummer CHAR(10)  NOT NULL,
-kundebrukernavn CHAR(10)  NOT NULL, 
+selgerbrukernavn CHAR(10)  NOT NULL, --(FK1 - ORDRE)
+salgsnummer CHAR(10)  NOT NULL, --(FK2 - ORDRE)
+kundebrukernavn CHAR(10)  NOT NULL, --(FK3 - KUNDE)
+rettnummer CHAR(10)  NOT NULL,--(FK4 - RETTER)
 CONSTRAINT ordretabell_PK PRIMARY KEY(salgsnummer, selgerbrukernavn, kundebrukernavn)
 );
 
 CREATE TABLE selgere(
-brukernavn CHAR(10)  NOT NULL,
+brukernavn CHAR(10)  NOT NULL, --(FK1 - BRUKER)
 salgPerManed CHAR(10), 
 opparbeidetProvisjon CHAR(10), 
 antSalg CHAR(10),
@@ -120,13 +121,13 @@ CONSTRAINT selgere_PK PRIMARY KEY(brukernavn)
 );
 
 CREATE TABLE annet (
-brukernavn CHAR(10)  NOT NULL, 
+brukernavn CHAR(10)  NOT NULL, --(FK1 - BRUKER)
 fastlønn CHAR(10), 
 CONSTRAINT annet_PK PRIMARY KEY(brukernavn)
 );
 
 CREATE TABLE administrator (
-brukernavn CHAR(10)  NOT NULL,
+brukernavn CHAR(10)  NOT NULL, --(FK1 - BRUKER)
 CONSTRAINT administrator_PK PRIMARY KEY(brukernavn)
 );
 

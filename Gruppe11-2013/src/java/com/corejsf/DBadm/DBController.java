@@ -193,7 +193,7 @@ public class DBController {
         DBConnection conn = new DBConnection();
         PreparedStatement oppdaterPassord = null;
         String oppdaterString =
-                "update WAPLJ.BRUKER set PASSORD = ? where BRUKERNAVN= ?";
+                "update GRUPPE11.BRUKER set PASSORD = ? where BRUKERNAVN= ?";
         try {
             conn.getConn().setAutoCommit(false);
             oppdaterPassord = conn.getConn().prepareStatement(oppdaterString);
