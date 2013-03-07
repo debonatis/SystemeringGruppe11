@@ -4,23 +4,28 @@
  */
 package com.corejsf.brukerAdm;
 
+import com.corejsf.DBadm.DBController;
 import java.awt.event.ActionEvent;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import org.primefaces.event.FlowEvent;
 
 /**
  *
  * @author deb
  */
-public class brukerregistreringBean {
+@Named
+@SessionScoped
+public class brukerregistreringBean extends DBController{
     
     private Bruker user = new Bruker();  
       
     private boolean skip;  
       
-    private static Logger logger = Logger.getLogger(brukerregistreringBean.class.getName());  
+    private static final Logger logger = Logger.getLogger(brukerregistreringBean.class.getName());  
   
     public Bruker getUser() {  
         return user;  
@@ -31,9 +36,9 @@ public class brukerregistreringBean {
     }  
       
     public void save(ActionEvent actionEvent) {  
-        //Persist user  
+        registrerBruker(user);
           
-        FacesMessage msg = new FacesMessage("Successful", "Welcome :" + user.getName());  
+        FacesMessage msg = new FacesMessage("Successful", "Welcome :" + user.fornavn);  
         FacesContext.getCurrentInstance().addMessage(null, msg);  
     }  
       
@@ -59,4 +64,3 @@ public class brukerregistreringBean {
     }  
 }  
     
-}
