@@ -16,16 +16,19 @@ import javax.persistence.Id;
 public class Bruker {
 
     private @Id
-    @UsrPswWaplj(passordsjekk=0 ,message= "This username is already in use,"
-            + " or it is one that is too similar.\n "
-            + "Write a new one! "
-            + "The username must have a lenght between 6 and 10 characters!", sjekkDB=1)
-    String name;
-    private String rolle = "";
-    private @UsrPswWaplj(passordsjekk=1 ,message= "The password must contain at least one uppercase "
-                    + "and one lowercase letter and one number. \n  The password must also contain one of following special characters(@#$%&). "
-                    + "Password must be between 6-10 characters!") 
-            String passord;
+    @UsrPswWaplj(passordsjekk = 0, message = "This username is already in use,"
+    + " or it is one that is too similar.\n "
+    + "Write a new one! "
+    + "The username must have a lenght between 6 and 10 characters!", sjekkDB = 1)
+    String brukernavn;
+    private String rolle;
+    private @UsrPswWaplj(passordsjekk = 1, message = "The password must contain at least one uppercase "
+    + "and one lowercase letter and one number. \n  The password must also contain one of following special characters(@#$%&). "
+    + "Password must be between 6-10 characters!")
+    String passord;
+    String fornavn;
+    String etternavn;
+    String postNr;
     private boolean endret;
 
     public synchronized boolean isEndret() {
@@ -36,21 +39,27 @@ public class Bruker {
         this.endret = endret;
     }
 
-    public Bruker() { 
-        this.name = "";
+    public Bruker() {
+        this.brukernavn = "";
         this.rolle = "";
         this.passord = "";
+        this.fornavn = "";
+        this.etternavn = "";
+        this.postNr = "";
     }
 
-    public Bruker(String name, String passord, String rolle) {
-        this.name = name;
-        this.rolle = rolle;
+    public Bruker(String brukernavn, String passord, String fornavn, String etternavn, String postNr, String rolle, int i) {
+        this.brukernavn = brukernavn;
         this.passord = passord;
+        this.fornavn = fornavn;
+        this.etternavn = etternavn;
+        this.postNr = postNr;
+        this.rolle = rolle;
         endret = false;
     }
 
-    public Bruker(String name, String passord, String rolle, int i) {
-        this.name = name;
+    public Bruker(String brukernavn, String passord, String rolle) {
+        this.brukernavn = brukernavn;
         this.rolle = rolle;
         this.passord = passord;
         endret = false;
@@ -103,8 +112,8 @@ public class Bruker {
      *
      * @return the value of name
      */
-    public synchronized String getName() {
-        return name;
+    public synchronized String getBrukernavn() {
+        return brukernavn;
     }
 
     /**
@@ -112,9 +121,42 @@ public class Bruker {
      *
      * @param name new value of name
      */
-    public synchronized void setName(String name) {
-        if (!(this.name.equalsIgnoreCase(name))) {
-            this.name = name;
+    public synchronized void setBrukernavn(String brukernavn) {
+        if (!(this.brukernavn.equalsIgnoreCase(brukernavn))) {
+            this.brukernavn = brukernavn;
+            setEndret(true);
+        }
+    }
+    
+        public String getFornavn() {
+        return fornavn;
+    }
+
+    public void setFornavn(String fornavn) {
+        if (!(this.fornavn.equalsIgnoreCase(fornavn))) {
+            this.fornavn = fornavn;
+            setEndret(true);
+        }
+    }
+
+    public String getEtternavn() {
+        return etternavn;
+    }
+
+    public void setEtternavn(String etternavn) {
+        if (!(this.etternavn.equalsIgnoreCase(etternavn))) {
+            this.etternavn = etternavn;
+            setEndret(true);
+        }
+    }
+
+    public String getPostNr() {
+        return postNr;
+    }
+
+    public void setPostNr(String postNr) {
+        if (!(this.postNr.equalsIgnoreCase(postNr))) {
+            this.postNr = postNr;
             setEndret(true);
         }
     }

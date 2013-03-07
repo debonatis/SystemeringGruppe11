@@ -51,7 +51,7 @@ public class ValidatorTekst3 extends BrukerBehandling implements ConstraintValid
                     brukerNavnOK = true;
                 } else {
                     for (BrukerStatus k : brukere) {
-                        if (k.getBruker().getName().trim().equalsIgnoreCase(innLagtTekst)) {
+                        if (k.getBruker().getBrukernavn().trim().equalsIgnoreCase(innLagtTekst)) {
                             brukerNavnOK = false;
                         }
                     }
