@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.corejsf;
+package com.corejsf.bestilling;
 
+import javax.faces.bean.RequestScoped;
 import javax.persistence.Id;
 import javax.swing.ImageIcon;
 import javax.validation.constraints.NotNull;
@@ -14,6 +15,7 @@ import org.hibernate.validator.constraints.Range;
  *
  * @author deb
  */
+@RequestScoped
 public class rett extends Meny{
     
     private @Id
@@ -29,11 +31,12 @@ public class rett extends Meny{
     String beskrivelese;
     private ImageIcon bilde;
 
-    public rett(int rettNr, String navn, String beskrivelese, ImageIcon bilde) {
+    public rett(int rettNr, String navn, String beskrivelese, ImageIcon bilde) {       
         this.rettNr = rettNr;
         this.navn = navn;
         this.beskrivelese = beskrivelese;
-        this.bilde = bilde;        
+        this.bilde = bilde; 
+        addRett(this);
     }
 
     public double getPris() {

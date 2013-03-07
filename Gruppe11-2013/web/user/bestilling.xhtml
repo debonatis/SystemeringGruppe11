@@ -19,23 +19,20 @@ and open the template in the editor.
                   
     <p:growl id="msg" showDetail="true" escape="false" />  
   
-    <h3 style="margin-top:0">Basic PickList</h3>  
+   
   
-    <p:pickList id="plukkliste" value="#{plukkListeBean.menyer}" var="meny"   
-                itemLabel="#{meny}" itemValue="#{meny}" />  
+    
   
-    <p:commandButton id="menyOK" value="Submit" update="displayMenyer" oncomplete="MenyDialog.show()" style="margin-top:5px"/>  
-  
-    <h3>Meny Liste</h3>  
+    <h3>Rett Liste</h3>  
     <p:pickList id="pojoPickList" value="#{plukkListeBean.retter}" var="rett" effect="bounce"  
-                itemValue="#{rett}" itemLabel="#{rett}" converter="rett"  
+                itemValue="#{rett}" itemLabel="#{bruker.name}" converter="rett"  
                     showSourceControls="true" showTargetControls="true" showCheckbox="true"  
                     showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" >  
   
-        <f:facet name="sourceCaption">Available</f:facet>  
-        <f:facet name="targetCaption">Starting</f:facet>  
+        <f:facet name="sourceCaption">Valgbare</f:facet>  
+        <f:facet name="targetCaption">Valgte</f:facet>  
   
-        <p:ajax event="transfer" listener="#{plukkListeBean.paaTransfer}" update="msg" />  
+        <p:ajax event="transfer" listener="#{plukkListeBean.paaTransfer(event)}" update="msg" />  
   
         <p:column style="width:25%">  
             <p:graphicImage value="/images/barca/#{rett.bilde}" width="30" height="40" />  
@@ -47,32 +44,20 @@ and open the template in the editor.
   
     </p:pickList>  
   
-    <p:commandButton id="pojoSubmit" value="Submit" update="displayPlayers" oncomplete="playerDialog.show()" style="margin-top:5px"/>  
+    <p:commandButton id="pojoSubmit" value="Submit" update="displayRetter" oncomplete="playerDialog.show()" style="margin-top:5px"/>  
   
-    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="cityDialog">  
-        <h:panelGrid id="displayMenyer" columns="2">  
+    
+  
+    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="rettDialog">  
+        <h:panelGrid id="displayRetter" columns="2">  
             <h:outputText value="Source: " style="font-weight:bold"/>  
-            <ui:repeat value="#{plukkListeBean.}" var="item">  
-                <h:outputText value="#{item}" style="margin-right:5px" />  
+            <ui:repeat value="#{plukkListeBean.retter.source}" var="rett">  
+                <h:outputText value="#{rett}" style="margin-right:5px" />  
             </ui:repeat>  
   
             <h:outputText value="Target: " style="font-weight:bold"/>  
-            <ui:repeat value="#{pickListBean.cities.target}" var="item">  
-                <h:outputText value="#{item}" style="margin-right:5px" />  
-            </ui:repeat>  
-        </h:panelGrid>  
-    </p:dialog>  
-  
-    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="playerDialog">  
-        <h:panelGrid id="displayPlayers" columns="2">  
-            <h:outputText value="Source: " style="font-weight:bold"/>  
-            <ui:repeat value="#{pickListBean.players.source}" var="player">  
-                <h:outputText value="#{player.name}" style="margin-right:5px" />  
-            </ui:repeat>  
-  
-            <h:outputText value="Target: " style="font-weight:bold"/>  
-            <ui:repeat value="#{pickListBean.players.target}" var="player">  
-                <h:outputText value="#{player.name}" style="margin-right:5px" />  
+            <ui:repeat value="#{plukkListeBean.retter.target}" var="rett">  
+                <h:outputText value="#{rett}" style="margin-right:5px" />  
             </ui:repeat>  
         </h:panelGrid>  
     </p:dialog>  
