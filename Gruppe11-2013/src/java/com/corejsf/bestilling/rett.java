@@ -31,11 +31,12 @@ public class rett extends Meny{
     String beskrivelese;
     private ImageIcon bilde;
 
-    public rett(int rettNr, String navn, String beskrivelese, ImageIcon bilde) {
+    public rett(int rettNr, String navn, String beskrivelese, ImageIcon bilde) {       
         this.rettNr = rettNr;
         this.navn = navn;
         this.beskrivelese = beskrivelese;
-        this.bilde = bilde;        
+        this.bilde = bilde; 
+        addRett(this);
     }
 
     public double getPris() {

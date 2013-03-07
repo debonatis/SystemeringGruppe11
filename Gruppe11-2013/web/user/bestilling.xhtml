@@ -24,8 +24,8 @@ and open the template in the editor.
     
   
     <h3>Rett Liste</h3>  
-    <p:pickList id="pojoPickList" value="#{bruker.alleBrukere}" var="bruker" effect="bounce"  
-                itemValue="#{bruker}" itemLabel="#{bruker.name}" converter="rett"  
+    <p:pickList id="pojoPickList" value="#{plukkListeBean.retter}" var="rett" effect="bounce"  
+                itemValue="#{rett}" itemLabel="#{bruker.name}" converter="rett"  
                     showSourceControls="true" showTargetControls="true" showCheckbox="true"  
                     showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" >  
   
