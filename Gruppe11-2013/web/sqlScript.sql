@@ -16,18 +16,25 @@ DROP TABLE retter;
 DROP TABLE selskaper;
 
 CREATE TABLE bruker (
-fornavn CHAR(10)  NOT NULL, 
-etternavn CHAR(10)  NOT NULL, 
-brukernavn CHAR(10)  NOT NULL,  
+brukernavn CHAR(10)  NOT NULL,
 passord CHAR(10) NOT NULL,
-postnummer CHAR(10), --(FK1 - BOSTED)
+fornavn CHAR(10)  NOT NULL, 
+etternavn CHAR(10)  NOT NULL,
+adresse CHAR(20) NOT NULL, 
+postnummer INTEGER, --(FK1 - BOSTED)
 CONSTRAINT bruker_PK PRIMARY KEY(brukernavn) 
 );
 
+CREATE TABLE bosted (
+postnummer INTEGER, 
+poststed CHAR(10)  NOT NULL, 
+CONSTRAINT Bosted_PK PRIMARY KEY(postnummer)
+);
+
 CREATE TABLE rolle (
-rolle CHAR(10)  NOT NULL, 
-brukernavn CHAR(10)  NOT NULL, --(FK1 - BRUKER)
-CONSTRAINT rolle_PK PRIMARY KEY(rolle, brukernavn)
+brukernavn CHAR(10), --(FK1 - BRUKER)
+rollen CHAR(10)  NOT NULL, 
+CONSTRAINT rolle_PK PRIMARY KEY(brukernavn, rollen)
 );
 
 CREATE TABLE selskaper (
@@ -46,7 +53,7 @@ CONSTRAINT utkjøringsBil_PK PRIMARY KEY(bilnr)
 
 CREATE TABLE selskapKunde (
 brukernavn CHAR(10)  NOT NULL, --(FK1 - KUNDE)
-selskapnr INTEGER  NOT NULL, --(FK2 - SELSKAPER)
+selskapnr INTEGER NOT NULL, --(FK2 - SELSKAPER)
 CONSTRAINT selskapKunde_PK PRIMARY KEY(brukernavn, selskapnr)
 );
 
@@ -72,12 +79,6 @@ Førekortklasse CHAR(10)  NOT NULL,
 CONSTRAINT sjåfører_PK PRIMARY KEY(brukernavn)
 );
 
-CREATE TABLE Bosted (
-postnummer CHAR(10)  NOT NULL, 
-poststed CHAR(10)  NOT NULL, 
-CONSTRAINT Bosted_PK PRIMARY KEY(postnummer)
-);
-
 CREATE TABLE ordre (
 brukernavn CHAR(10)  NOT NULL , --(FK1 - SELGERE)
 salgsnummer CHAR(10)  NOT NULL  , --(FK2 - SALG)
@@ -99,7 +100,7 @@ CONSTRAINT retter_PK PRIMARY KEY(rettnummer)
 
 CREATE TABLE Kunde (
 brukernavn CHAR(10) NOT NULL, --(FK1 - BRUKER)
-avslag VARCHAR(10), 
+avslag INTEGER, 
 CONSTRAINT Kunde_PK PRIMARY KEY(brukernavn)
 );
 
@@ -203,3 +204,26 @@ ALTER TABLE administrator
 ADD CONSTRAINT bruker_administrator_FK1 FOREIGN KEY (brukernavn)
 REFERENCES bruker (brukernavn);
 
+INSERT INTO bosted VALUES (7018,'Trondheim');
+INSERT INTO bosted VALUES (7050,'Trondheim');
+INSERT INTO bosted VALUES (7052,'Trondheim');
+INSERT INTO bosted VALUES (7036,'Trondheim');
+
+INSERT INTO bruker VALUES ('martinB','asdf1234','Martin','Bakkmyr','Blåklokkeveien 18B',7050);
+INSERT INTO bruker VALUES ('simonD','asdf1234','Simon','Dehli','Solsiden 1A',7018);
+INSERT INTO bruker VALUES ('jørgenO','asdf1234','Jørgen','Olsen','Blåklokkeveien 18B',7050);
+INSERT INTO bruker VALUES ('martinA','asdf1234','Martin','Almvik','Lolz 1',7052);
+INSERT INTO bruker VALUES ('mikaelS','asdf1234','Mikael','Solstad','Lolz 2',7052);
+
+INSERT INTO rolle VALUES ('simonD', 'Kokk');
+INSERT INTO rolle VALUES ('jørgenO', 'Sjåfør');
+INSERT INTO rolle VALUES ('martinB', 'Sjef');
+INSERT INTO rolle VALUES ('martinA', 'Kunde');
+INSERT INTO rolle VALUES ('mikaelS', 'Bedrift');
+
+INSERT INTO SELSKAPER(avslag, akkumulertSalg) VALUES (20, 200000);
+INSERT INTO SELSKAPER(avslag, akkumulertSalg) VALUES (15, 150000);
+INSERT INTO SELSKAPER(avslag, akkumulertSalg) VALUES (10, 100000);
+
+INSERT INTO KUNDE VALUES ('martinA', 5);
+INSERT INTO KUNDE VALUES ('mikaelS', 15);

@@ -195,10 +195,10 @@ public class BrukerBehandling extends DBController implements Serializable {
                     indeks--;
                 }
             }
-            if (!(getTempBruker().getName().equalsIgnoreCase(""))) {
+            if (!(getTempBruker().getBrukernavn().equalsIgnoreCase(""))) {
                 Bruker nyBruker;
                 String rolle = (getTempBruker().getRolle().equals("")) ? "bruker" : getTempBruker().getRolle();
-                nyBruker = new Bruker(getTempBruker().getName(), getTempBruker().getPassord(),
+                nyBruker = new Bruker(getTempBruker().getBrukernavn(), getTempBruker().getPassord(),
                         rolle);
                 bOversikt.add(new BrukerStatus(nyBruker));
                 statiskdbBrukerListe.add(new BrukerStatus(nyBruker));
@@ -253,7 +253,7 @@ public class BrukerBehandling extends DBController implements Serializable {
             Collections.sort(bOversikt, new Comparator<BrukerStatus>() {
                 @Override
                 public int compare(BrukerStatus bruker1, BrukerStatus bruker2) {
-                    return bruker1.getBruker().getName().compareTo(bruker2.getBruker().getName());
+                    return bruker1.getBruker().getBrukernavn().compareTo(bruker2.getBruker().getBrukernavn());
                 }
             });
             sortBruker = false;
@@ -261,7 +261,7 @@ public class BrukerBehandling extends DBController implements Serializable {
             Collections.sort(bOversikt, new Comparator<BrukerStatus>() {
                 @Override
                 public int compare(BrukerStatus bruker1, BrukerStatus bruker2) {
-                    return bruker2.getBruker().getName().compareTo(bruker1.getBruker().getName());
+                    return bruker2.getBruker().getBrukernavn().compareTo(bruker1.getBruker().getBrukernavn());
                 }
             });
             sortBruker = true;

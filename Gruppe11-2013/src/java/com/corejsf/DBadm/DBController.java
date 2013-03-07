@@ -227,13 +227,16 @@ public class DBController {
 
         DBConnection conn = new DBConnection();
         PreparedStatement reg = null;
-        String regTekst = "INSERT INTO WAPLJ.BRUKER"
-                + " VALUES (?,?)";
+        String regTekst = "INSERT INTO GRUPPE11.BRUKER"
+                + " VALUES (?,?,?,?,?)";
         try {
             conn.getConn().setAutoCommit(false);
             reg = conn.getConn().prepareStatement(regTekst);
-            reg.setString(1, bruker.getName());
+            reg.setString(1, bruker.getBrukernavn());
             reg.setString(2, bruker.getPassord());
+            reg.setString(3, bruker.getFornavn());
+            reg.setString(4, bruker.getEtternavn());
+            reg.setString(5, bruker.getPostNr());
             reg.executeUpdate();
             conn.getConn().commit();
             fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nyregistrering av bruker fullført!", "ja,Nyregistreing fullført!");
@@ -250,13 +253,13 @@ public class DBController {
     private synchronized void registrerRolle(DBConnection conn, Bruker bruker) {
 
         PreparedStatement reg = null;
-        String regTekst2 = "INSERT INTO WAPLJ.ROLLE"
+        String regTekst2 = "INSERT INTO GRUPPE11.ROLLE"
                 + " VALUES (?,?) ";
         try {
             conn.getConn().setAutoCommit(false);
             reg = conn.getConn().prepareStatement(regTekst2);
-            reg.setString(1, bruker.getName());
-            reg.setString(2, bruker.getRolle());
+            reg.setString(1, bruker.getRolle());
+            reg.setString(2, bruker.getBrukernavn());
             reg.executeUpdate();
             conn.getConn().commit();
             fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nyregistrering av rolle fullført!", "ja,Nyregistreing fullført!");
@@ -273,15 +276,15 @@ public class DBController {
 
     public synchronized void slettBruker(Bruker bruker) {
         int i = 0;
-        slettalleTreningsOkterNavn(bruker.getName());
+        slettalleTreningsOkterNavn(bruker.getBrukernavn());
         DBConnection conn = new DBConnection();
         Statement st = null;
         try {
             st = conn.getConn().createStatement();
-            st.executeUpdate("DELETE FROM waplj.rolle WHERE rolle.brukernavn = '" + bruker.getName() + "'");
+            st.executeUpdate("DELETE FROM gruppe11.rolle WHERE rolle.brukernavn = '" + bruker.getBrukernavn() + "'");
             st.getConnection().commit();
             st = conn.getConn().createStatement();
-            st.executeUpdate("DELETE FROM waplj.bruker WHERE bruker.brukernavn = '" + bruker.getName() + "'");
+            st.executeUpdate("DELETE FROM gruppe11.bruker WHERE bruker.brukernavn = '" + bruker.getBrukernavn() + "'");
             st.getConnection().commit();
             fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sletting utført!", "ja,Sletting utført!");
             fc = FacesContext.getCurrentInstance();
@@ -297,7 +300,7 @@ public class DBController {
                 slettBruker(bruker);
             }
         }
-        slettalleTreningsOkterNavn(bruker.getName());
+        slettalleTreningsOkterNavn(bruker.getBrukernavn());
     }
 
     public synchronized int oppdaterBrukerDB(List<BrukerStatus> brukere) {
@@ -315,7 +318,7 @@ public class DBController {
         PreparedStatement oppdaterOkter = null;
         PreparedStatement oppdaterOkter2 = null;
         String oppdaterString1 =
-                "update WAPLJ.Rolle set rolle.rolle = ? where rolle.BRUKERNAVN= ?";
+                "update GRUPPE11.Rolle set rolle.rolle = ? where rolle.BRUKERNAVN= ?";
         String oppdaterString2 =
                 "update WAPLJ.BRUKER set bruker.passord = ? where bruker.BRUKERNAVN= ?";
         if (!hjelpBruker.isEmpty()) {
@@ -324,7 +327,7 @@ public class DBController {
                 oppdaterOkter = conn.getConn().prepareStatement(oppdaterString1);
                 for (BrukerStatus f : hjelpBruker) {
                     oppdaterOkter.setString(1, f.getBruker().getRolle());
-                    oppdaterOkter.setString(2, f.getBruker().getName());
+                    oppdaterOkter.setString(2, f.getBruker().getBrukernavn());
                     oppdaterOkter.executeUpdate();
                     conn.getConn().commit();
                 }
@@ -332,7 +335,7 @@ public class DBController {
                 oppdaterOkter2 = conn.getConn().prepareStatement(oppdaterString2);
                 for (BrukerStatus f : hjelpBruker) {
                     oppdaterOkter2.setString(1, f.getBruker().getPassord());
-                    oppdaterOkter2.setString(2, f.getBruker().getName());
+                    oppdaterOkter2.setString(2, f.getBruker().getBrukernavn());
                     oppdaterOkter2.executeUpdate();
                     conn.getConn().commit();
                 }
@@ -367,14 +370,15 @@ public class DBController {
         ResultSet rs = null;
         try {
             st = conn.getConn().createStatement();
-            rs = st.executeQuery("SELECT BRUKER.brukernavn, Bruker.passord, rolle.rolle\n"
+            rs = st.executeQuery("SELECT BRUKER.brukernavn, Bruker.passord, Bruker.fornavn,"
+                    + " Bruker.etternavn, rolle.rolle\n"
                     + "FROM BRUKER\n"
                     + "RIGHT JOIN ROLLE\n"
                     + "ON Bruker.BRUKERNAVN=ROLLE.BRUKERNAVN\n"
                     + "ORDER BY BRUKER.BRUKERNAVN");
             while (rs.next()) {
-                hjelpeobjekt = new Bruker(rs.getString("Brukernavn"), rs.getString("passord"),
-                        rs.getString("rolle"), 1);
+                hjelpeobjekt = new Bruker(rs.getString("Brukernavn"), rs.getString("passord"),rs.getString("fornavn"),
+                        rs.getString("etternavn"),rs.getString("postNr"), rs.getString("rolle"), 1);
                 dbBrukerobjekter.add(new BrukerStatus(hjelpeobjekt));
             }
             conn.getConn().commit();
