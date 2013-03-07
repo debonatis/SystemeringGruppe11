@@ -227,16 +227,26 @@ public class DBController {
 
         DBConnection conn = new DBConnection();
         PreparedStatement reg = null;
-        String regTekst = "INSERT INTO GRUPPE11.BRUKER"
-                + " VALUES (?,?,?,?,?)";
+        PreparedStatement reg2 = null;
+        String regTekst = "INSERT INTO LOL.BRUKER"
+                + " VALUES (?,?,?,?,?,?)";
+        String regTekst2 = "INSERT INTO LOL.BOSTED"
+                + "VALUES (?,?)";
         try {
             conn.getConn().setAutoCommit(false);
             reg = conn.getConn().prepareStatement(regTekst);
+            reg2 = conn.getConn().prepareStatement(regTekst2);
             reg.setString(1, bruker.getBrukernavn());
             reg.setString(2, bruker.getPassord());
             reg.setString(3, bruker.getFornavn());
             reg.setString(4, bruker.getEtternavn());
-            reg.setString(5, bruker.getPostNr());
+            reg.setInt(5, bruker.getPostNr());
+            reg2.setInt(1, bruker.getPostNr());
+            reg.setString(6, bruker.getGateAdresse());
+            reg2.setString(2, bruker.getPostSted());
+            reg.setString(8, bruker.getEmail());
+            reg.setInt(9, bruker.getTelefon());
+            
             reg.executeUpdate();
             conn.getConn().commit();
             fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Nyregistrering av bruker fullført!", "ja,Nyregistreing fullført!");
@@ -318,9 +328,9 @@ public class DBController {
         PreparedStatement oppdaterOkter = null;
         PreparedStatement oppdaterOkter2 = null;
         String oppdaterString1 =
-                "update GRUPPE11.Rolle set rolle.rolle = ? where rolle.BRUKERNAVN= ?";
+                "update LOL.Rolle set rolle.rolle = ? where rolle.BRUKERNAVN= ?";
         String oppdaterString2 =
-                "update WAPLJ.BRUKER set bruker.passord = ? where bruker.BRUKERNAVN= ?";
+                "update LOL.BRUKER set bruker.passord = ? where bruker.BRUKERNAVN= ?";
         if (!hjelpBruker.isEmpty()) {
             try {
                 conn.getConn().setAutoCommit(false);
@@ -378,7 +388,8 @@ public class DBController {
                     + "ORDER BY BRUKER.BRUKERNAVN");
             while (rs.next()) {
                 hjelpeobjekt = new Bruker(rs.getString("Brukernavn"), rs.getString("passord"),rs.getString("fornavn"),
-                        rs.getString("etternavn"),rs.getString("postNr"), rs.getString("rolle"), 1);
+                        rs.getString("etternavn"),rs.getInt("postNr"),rs.getString("adresse"),
+                        rs.getString("postSted"),rs.getString("email"),rs.getInt("telefon"), rs.getString("rolle"), 1);
                 dbBrukerobjekter.add(new BrukerStatus(hjelpeobjekt));
             }
             conn.getConn().commit();

@@ -20,7 +20,9 @@ brukernavn CHAR(10)  NOT NULL,
 passord CHAR(10) NOT NULL,
 fornavn CHAR(10)  NOT NULL, 
 etternavn CHAR(10)  NOT NULL,
-adresse CHAR(20) NOT NULL, 
+adresse CHAR(20) NOT NULL,
+email CHAR(30) NOT NULL,
+telefon INTEGER NOT NULL,
 postnummer INTEGER, --(FK1 - BOSTED)
 CONSTRAINT bruker_PK PRIMARY KEY(brukernavn) 
 );
@@ -209,11 +211,16 @@ INSERT INTO bosted VALUES (7050,'Trondheim');
 INSERT INTO bosted VALUES (7052,'Trondheim');
 INSERT INTO bosted VALUES (7036,'Trondheim');
 
-INSERT INTO bruker VALUES ('martinB','asdf1234','Martin','Bakkmyr','Blåklokkeveien 18B',7050);
-INSERT INTO bruker VALUES ('simonD','asdf1234','Simon','Dehli','Solsiden 1A',7018);
-INSERT INTO bruker VALUES ('jørgenO','asdf1234','Jørgen','Olsen','Blåklokkeveien 18B',7050);
-INSERT INTO bruker VALUES ('martinA','asdf1234','Martin','Almvik','Lolz 1',7052);
-INSERT INTO bruker VALUES ('mikaelS','asdf1234','Mikael','Solstad','Lolz 2',7052);
+INSERT INTO bruker VALUES ('martinB','asdf1234','Martin','Bakkmyr','Blåklokkeveien 18B','lol@lol.com'
+,13377331,7050);
+INSERT INTO bruker VALUES ('simonD','asdf1234','Simon','Dehli','Solsiden 1A','lol@lol.com'
+,13377331,7018);
+INSERT INTO bruker VALUES ('jørgenO','asdf1234','Jørgen','Olsen','Blåklokkeveien 18B','lol@lol.com'
+,13377331,7050);
+INSERT INTO bruker VALUES ('martinA','asdf1234','Martin','Almvik','Lolz 1','lol@lol.com'
+,13377331,7052);
+INSERT INTO bruker VALUES ('mikaelS','asdf1234','Mikael','Solstad','Lolz 2','lol@lol.com'
+,13377331,7052);
 
 INSERT INTO rolle VALUES ('simonD', 'Kokk');
 INSERT INTO rolle VALUES ('jørgenO', 'Sjåfør');
