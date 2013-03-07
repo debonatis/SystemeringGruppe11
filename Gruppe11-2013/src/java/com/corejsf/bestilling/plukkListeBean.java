@@ -4,6 +4,7 @@
  */
 package com.corejsf.bestilling;
 import com.corejsf.DBadm.DBController;
+import com.corejsf.rett;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -11,10 +12,11 @@ import java.util.ArrayList;
 import java.util.List;  
 import javax.faces.application.FacesMessage;  
 import javax.faces.context.FacesContext;  
-import org.primefaces.event.TransferEvent;  
+import javax.swing.ImageIcon;
+ 
   
-import org.primefaces.examples.domain.Player;  
 import org.primefaces.model.DualListModel;
+import org.primefaces.event.
 
 /**
  *
@@ -22,27 +24,27 @@ import org.primefaces.model.DualListModel;
  */
 @Named
 @SessionScoped
-public class Bestilling extends DBController implements Serializable{
+public class plukkListeBean extends DBController implements Serializable{
     
     
     
-    private DualListModel<Player> players;  
+    private DualListModel<rett> players;  
       
     private DualListModel<String> cities;  
   
-    public PickListBean() {  
-        //Players  
-        List<Player> source = new ArrayList<Player>();  
-        List<Player> target = new ArrayList<Player>();  
+    public plukkListeBean() {  
+        //Retter  
+        List<rett> source = new ArrayList<rett>();  
+        List<rett> target = new ArrayList<rett>();  
           
-        source.add(new Player("Messi", 10, "messi.jpg"));  
-        source.add(new Player("Iniesta", 8, "iniesta.jpg"));  
-        source.add(new Player("Villa", 7, "villa.jpg"));  
-        source.add(new Player("Alves", 2, "alves.jpg"));  
-        source.add(new Player("Xavi", 6, "xavi.jpg"));  
-        source.add(new Player("Puyol", 5, "puyol.jpg"));      
+        source.add(new rett(1, "Klubb", "godMat",new ImageIcon(getClass().getResource("/rettBilder/godt.jpg"), "namnam")));  
+        source.add(new rett(2, "Burger", "godMat",new ImageIcon(getClass().getResource("/rettBilder/polse.jpg"), "namnam")));  
+        source.add(new rett(3, "tull", "godMat",new ImageIcon(getClass().getResource("/rettBilder/lastned.jpg"), "namnam")));  
+        source.add(new rett(4, "Flesk", "godMat",new ImageIcon(getClass().getResource("/rettBilder/reker.jpg"), "namnam")));  
+        source.add(new rett(5, "mmmm", "godMat",new ImageIcon(getClass().getResource("/rettBilder/reker.jpg"), "namnam")));  
+        source.add(new rett(6, "hellvett", "godMat",new ImageIcon(getClass().getResource("/rettBilder/godt.jpg"), "namnam")));      
           
-        players = new DualListModel<Player>(source, target);  
+        players = new DualListModel<rett>(source, target);  
           
         //Cities  
         List<String> citiesSource = new ArrayList<String>();  
@@ -57,10 +59,10 @@ public class Bestilling extends DBController implements Serializable{
         cities = new DualListModel<String>(citiesSource, citiesTarget);  
     }  
       
-    public DualListModel<Player> getPlayers() {  
+    public DualListModel<rett> getPlayers() {  
         return players;  
     }  
-    public void setPlayers(DualListModel<Player> players) {  
+    public void setPlayers(DualListModel<rett> players) {  
         this.players = players;  
     }  
       
@@ -74,7 +76,7 @@ public class Bestilling extends DBController implements Serializable{
     public void onTransfer(TransferEvent event) {  
         StringBuilder builder = new StringBuilder();  
         for(Object item : event.getItems()) {  
-            builder.append(((Player) item).getName()).append("<br />");  
+            builder.append(((rett) item).getNavn()).append("<br />");  
         }  
           
         FacesMessage msg = new FacesMessage();  
