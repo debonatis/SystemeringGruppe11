@@ -27,7 +27,8 @@ public class LocaleChanger implements Serializable{
     
     public String englishAction(){
         FacesContext context = FacesContext.getCurrentInstance();
-        context.getViewRoot().setLocale(Locale.ENGLISH);
+        context.getViewRoot().setLocale(Locale.ENGLISH);      
+        
         return null;
     }
     

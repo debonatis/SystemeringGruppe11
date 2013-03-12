@@ -26,7 +26,7 @@ and open the template in the editor.
                     <p:growl id="growl" sticky="true" showDetail="true"/>  
 
                     <p:wizard widgetVar="wiz"  
-                              flowListener="#{brukerregistreringBean.onFlowProcess}">  
+                              flowListener="#{brukerregistreringBean.onFlowProcess(event)}">  
 
                         <p:tab id="personal" title="Personal">  
 
@@ -136,7 +136,7 @@ and open the template in the editor.
                                 </h:panelGrid>  
 
                                 <p:commandButton value="Submit" update="growl"   
-                                                 actionListener="#{brukerregistreringBean.save}"/>  
+                                                 actionListener="#{brukerregistreringBean.save(actionEvent)}"/>  
 
                             </p:panel>  
                         </p:tab>  

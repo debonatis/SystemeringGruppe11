@@ -21,4 +21,5 @@
 
     <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
 
+    <bean id="brukerregistreringBean" class="com.corejsf.brukerAdm.brukerregistreringBean"/>
 </beans>

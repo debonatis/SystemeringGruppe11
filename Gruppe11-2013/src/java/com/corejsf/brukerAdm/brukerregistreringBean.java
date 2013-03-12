@@ -4,8 +4,8 @@
  */
 package com.corejsf.brukerAdm;
 
-import com.corejsf.DBadm.DBController;
 import java.awt.event.ActionEvent;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
@@ -19,9 +19,14 @@ import org.primefaces.event.FlowEvent;
  */
 @Named
 @SessionScoped
-public class brukerregistreringBean extends DBController{
+public class brukerregistreringBean extends BrukerBehandling{
     
     private Bruker user = new Bruker();  
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
       
     private boolean skip;  
       
@@ -51,8 +56,8 @@ public class brukerregistreringBean extends DBController{
     }  
       
     public String onFlowProcess(FlowEvent event) {  
-        logger.info("Current wizard step:" + event.getOldStep());  
-        logger.info("Next step:" + event.getNewStep());  
+        logger.log(Level.INFO, "Current wizard step:{0}", event.getOldStep());  
+        logger.log(Level.INFO, "Next step:{0}", event.getNewStep());  
           
         if(skip) {  
             skip = false;   //reset in case user goes back  
