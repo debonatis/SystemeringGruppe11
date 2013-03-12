@@ -222,7 +222,7 @@ INSERT INTO bruker VALUES ('martinA','asdf1234','Martin','Almvik','Lolz 1','lol@
 INSERT INTO bruker VALUES ('mikaelS','asdf1234','Mikael','Solstad','Lolz 2','lol@lol.com'
 ,13377331,7052);
 
-INSERT INTO rolle VALUES ('simonD', 'Kokk');
+INSERT INTO rolle VALUES ('simonD', 'admin');
 INSERT INTO rolle VALUES ('jørgenO', 'Sjåfør');
 INSERT INTO rolle VALUES ('martinB', 'Sjef');
 INSERT INTO rolle VALUES ('martinA', 'Kunde');

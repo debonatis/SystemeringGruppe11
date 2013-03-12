@@ -29,7 +29,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author deb
  */
-
+@Named("Bruker")
 @SessionScoped
 @Cacheable(false)
 @DeclareRoles({"admin", "bruker"})
