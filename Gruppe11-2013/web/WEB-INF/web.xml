@@ -66,6 +66,9 @@
     <security-role>
         <role-name>admin</role-name>
     </security-role>
+    <security-role>
+        <role-name>Kokk</role-name>
+    </security-role>
     <error-page>
         <error-code>403</error-code>
         <location>/faces/login/ikkelogin.xhtml</location>
