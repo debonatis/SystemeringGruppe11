@@ -40,8 +40,8 @@ public class brukerregistreringBean extends BrukerBehandling{
         this.user = user;  
     }  
       
-    public void save(ActionEvent actionEvent) {  
-        registrerBruker(user);
+    public void save(ActionEvent actionEvent) { 
+       
           
         FacesMessage msg = new FacesMessage("Successful", "Welcome :" + user.fornavn);  
         FacesContext.getCurrentInstance().addMessage(null, msg);  

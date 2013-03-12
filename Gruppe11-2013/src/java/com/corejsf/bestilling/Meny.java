@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author deb
  */
-public abstract class Meny {
+public class Meny {
 
     private ArrayList<rett> retter;
     private int number;
