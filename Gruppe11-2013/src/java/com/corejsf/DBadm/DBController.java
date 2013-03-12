@@ -139,10 +139,10 @@ public class DBController {
         Statement st = null;
         try {
             st = conn.getConn().createStatement();
-            st.executeUpdate("DELETE FROM gruppe11.rolle WHERE rolle.brukernavn = '" + bruker.getBrukernavn() + "'");
+            st.executeUpdate("DELETE FROM rolle WHERE rolle.brukernavn = '" + bruker.getBrukernavn() + "'");
             st.getConnection().commit();
             st = conn.getConn().createStatement();
-            st.executeUpdate("DELETE FROM gruppe11.bruker WHERE bruker.brukernavn = '" + bruker.getBrukernavn() + "'");
+            st.executeUpdate("DELETE FROM bruker WHERE bruker.brukernavn = '" + bruker.getBrukernavn() + "'");
             st.getConnection().commit();
             fm = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sletting utført!", "ja,Sletting utført!");
             fc = FacesContext.getCurrentInstance();
@@ -176,9 +176,9 @@ public class DBController {
         PreparedStatement oppdaterOkter = null;
         PreparedStatement oppdaterOkter2 = null;
         String oppdaterString1 =
-                "update LOL.Rolle set rolle.rolle = ? where rolle.BRUKERNAVN= ?";
+                "update rolle set rolle.rolle = ? where rolle.BRUKERNAVN= ?";
         String oppdaterString2 =
-                "update LOL.BRUKER set bruker.passord = ? where bruker.BRUKERNAVN= ?";
+                "update bruker set bruker.passord = ? where bruker.BRUKERNAVN= ?";
         if (!hjelpBruker.isEmpty()) {
             try {
                 conn.getConn().setAutoCommit(false);
