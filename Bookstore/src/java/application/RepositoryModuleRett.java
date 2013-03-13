@@ -14,7 +14,7 @@ import com.google.inject.AbstractModule;
 import repository.RettRepository;
 import repository.RettRepositoryJPA;
 
-public class RepositoryModule extends AbstractModule {
+public class RepositoryModuleRett extends AbstractModule {
 
     @Override
     protected void configure() {
