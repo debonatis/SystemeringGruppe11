@@ -38,6 +38,8 @@
         <auth-constraint>
             <role-name>bruker</role-name>
             <role-name>admin</role-name>
+            <role-name>kokk</role-name>
+            <role-name>driver</role-name>
         </auth-constraint>        
     </security-constraint>
     <security-constraint>
@@ -67,7 +69,7 @@
         <role-name>admin</role-name>
     </security-role>
     <security-role>
-        <role-name>Kokk</role-name>
+        <role-name>kokk</role-name>
     </security-role>
     <error-page>
         <error-code>403</error-code>
