@@ -15,7 +15,7 @@ and open the template in the editor.
 
     <h:body>  
         <h:form>
-            <p:carousel value="#{plukkListeBean.retter}" var="rett" itemStyle=”width:200px”>
+            <p:carousel value="#{plukkListeBean.retter}" var="rett" itemStyle="width:200px">
                 <p:column>
                     <p:graphicImage value="/images/cars/#{car.manufacturer}.jpg"/>
                     <p:commandLink update=":form:detail" oncomplete="dlg.show()">

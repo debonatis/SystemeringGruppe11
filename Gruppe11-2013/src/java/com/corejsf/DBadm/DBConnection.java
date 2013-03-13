@@ -24,7 +24,7 @@ import javax.sql.DataSource;
 @RolesAllowed({"admin", "bruker"})
 public class DBConnection implements Serializable {
 
-    private transient @Resource(name = "jdbc/gruppe11")
+    private transient @Resource(name = "jdbc/waplj_prosjekt")
     DataSource source;
     private transient Connection conn;
     private static final Logger logger = Logger.getLogger("com.corejsf");
@@ -48,7 +48,7 @@ public class DBConnection implements Serializable {
         if (t > 0) {
             try {
                 Context ctx = new InitialContext();
-                source = (DataSource) ctx.lookup("java:comp/env/jdbc/gruppe11");
+                source = (DataSource) ctx.lookup("java:comp/env/jdbc/waplj_prosjekt");
                 try {
                     conn = source.getConnection();
                     System.out.println("OK!! Database");

@@ -41,7 +41,7 @@ public class DBController {
         DBConnection conn = new DBConnection();
         PreparedStatement oppdaterPassord = null;
         String oppdaterString =
-                "update GRUPPE11.BRUKER set PASSORD = ? where BRUKERNAVN= ?";
+                "update WAPLJ.BRUKER set PASSORD = ? where BRUKERNAVN= ?";
         try {
             conn.getConn().setAutoCommit(false);
             oppdaterPassord = conn.getConn().prepareStatement(oppdaterString);
@@ -76,9 +76,9 @@ public class DBController {
         DBConnection conn = new DBConnection();
         PreparedStatement reg = null;
         PreparedStatement reg2 = null;
-        String regTekst = "INSERT INTO LOL.BRUKER"
-                + " VALUES (?,?,?,?,?,?)";
-        String regTekst2 = "INSERT INTO LOL.BOSTED"
+        String regTekst = "INSERT INTO WAPLJ.BRUKER"
+                + " VALUES (?,?,?,?,?,?,?)";
+        String regTekst2 = "INSERT INTO WAPLJ.BOSTED"
                 + "VALUES (?,?)";
         try {
             conn.getConn().setAutoCommit(false);
@@ -111,7 +111,7 @@ public class DBController {
     private synchronized void registrerRolle(DBConnection conn, Bruker bruker) {
 
         PreparedStatement reg = null;
-        String regTekst2 = "INSERT INTO GRUPPE11.ROLLE"
+        String regTekst2 = "INSERT INTO WAPLJ.ROLLE"
                 + " VALUES (?,?) ";
         try {
             conn.getConn().setAutoCommit(false);
