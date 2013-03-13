@@ -24,23 +24,23 @@ import org.primefaces.model.DualListModel;
 @SessionScoped
 public class plukkListeBean extends DBController implements Serializable {
 
-    private List<rett> retter;
+    private List<Rett> retter;
     
-    private rett valgt;
+    private Rett valgt;
 
-    public List<rett> getRetter() {
+    public List<Rett> getRetter() {
         return retter;
     }
 
-    public void setRetter(List<rett> retter) {
+    public void setRetter(List<Rett> retter) {
         this.retter = retter;
     }
 
-    public void setValgt(rett valgt) {
+    public void setValgt(Rett valgt) {
         this.valgt = valgt;
     }
 
-    public rett getValgt() {
+    public Rett getValgt() {
         return valgt;
     }
 

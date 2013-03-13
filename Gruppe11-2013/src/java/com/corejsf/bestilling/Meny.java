@@ -4,7 +4,7 @@
  */
 package com.corejsf.bestilling;
 
-import com.corejsf.bestilling.rett;
+import com.corejsf.bestilling.Rett;
 import java.util.ArrayList;
 
 /**
@@ -13,15 +13,15 @@ import java.util.ArrayList;
  */
 public class Meny {
 
-    private ArrayList<rett> retter;
+    private ArrayList<Rett> retter;
     private int number;
     private String beskrivelse;
 
-    public void setRetter(ArrayList<rett> retter) {
+    public void setRetter(ArrayList<Rett> retter) {
         this.retter = retter;
     }
     
-    public void addRett(rett rett){
+    public void addRett(Rett rett){
         retter.add(rett);
     }
 
@@ -42,7 +42,7 @@ public class Meny {
     }
     
 
-    public ArrayList<rett> getRetter() {
+    public ArrayList<Rett> getRetter() {
         return retter;
     }
 }
