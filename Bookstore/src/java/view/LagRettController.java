@@ -35,10 +35,10 @@ public class LagRettController {
                 this.bookRepository = bookRepository;
         }
 
-        public Rett getBook() {
+        public Rett getRett() {
                 return rett;
         }
-        public void setBook(Rett rett) {
+        public void setRett(Rett rett) {
                 this.rett = rett;
         }
         
