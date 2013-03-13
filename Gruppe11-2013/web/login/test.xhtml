@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui">  
+
+    <h:head>  
+
+    </h:head>  
+
+    <h:body>  
+        <h:form>
+            <p:carousel value="#{plukkListeBean.retter}" var="rett" itemStyle=”width:200px”>
+                <p:column>
+                    <p:graphicImage value="/images/cars/#{car.manufacturer}.jpg"/>
+                    <p:commandLink update=":form:detail" oncomplete="dlg.show()">
+                        <h:outputText value="Model: #{car.model}" />
+                        <f:setPropertyActionListener value="#{car}" target="#{carBean.selected}" />
+                    </p:commandLink>
+                </p:column>
+            </p:carousel>
+            <p:dialog widgetVar="dlg">
+                <h:outputText id="detail" value="#{carBean.selected}" />
+            </p:dialog>
+        </h:form>
+    </h:body>  
+</html>  

@@ -24,44 +24,25 @@ import org.primefaces.model.DualListModel;
 @SessionScoped
 public class plukkListeBean extends DBController implements Serializable {
 
-    private DualListModel<rett> retter;
+    private List<rett> retter;
+    
+    private rett valgt;
 
-    public plukkListeBean() {
-        //Retter  
-        List<rett> source = new ArrayList<rett>();
-        List<rett> target = new ArrayList<rett>();
-
-        source.add(new rett(1, "Klubb", "godMat", new ImageIcon(getClass().getResource("/rettBilder/godt.jpg"), "namnam")));
-        source.add(new rett(2, "Burger", "godMat", new ImageIcon(getClass().getResource("/rettBilder/polse.jpg"), "namnam")));
-        source.add(new rett(3, "tull", "godMat", new ImageIcon(getClass().getResource("/rettBilder/lastned.jpg"), "namnam")));
-        source.add(new rett(4, "Flesk", "godMat", new ImageIcon(getClass().getResource("/rettBilder/reker.jpg"), "namnam")));
-        source.add(new rett(5, "mmmm", "godMat", new ImageIcon(getClass().getResource("/rettBilder/reker.jpg"), "namnam")));
-        source.add(new rett(6, "hellvett", "godMat", new ImageIcon(getClass().getResource("/rettBilder/godt.jpg"), "namnam")));
-
-        retter = new DualListModel<rett>(source, target);
-
-
-    }
-
-    public DualListModel<rett> getRetter() {
+    public List<rett> getRetter() {
         return retter;
     }
 
-    public void setRetter(DualListModel<rett> retter) {
+    public void setRetter(List<rett> retter) {
         this.retter = retter;
     }
 
-    public void paaTransfer(TransferEvent event) {
-        StringBuilder builder = new StringBuilder();
-        for (Object item : event.getItems()) {
-            builder.append(((rett) item).getNavn()).append("<br />");
-        }
-
-        FacesMessage msg = new FacesMessage();
-        msg.setSeverity(FacesMessage.SEVERITY_INFO);
-        msg.setSummary("Rettvalg Bekreftet");
-        msg.setDetail(builder.toString());
-
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+    public void setValgt(rett valgt) {
+        this.valgt = valgt;
     }
+
+    public rett getValgt() {
+        return valgt;
+    }
+
+    
 }
