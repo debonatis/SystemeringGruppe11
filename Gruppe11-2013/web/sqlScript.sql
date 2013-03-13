@@ -96,6 +96,11 @@ CONSTRAINT ordre_PK PRIMARY KEY(brukernavn, salgsnummer)
 CREATE TABLE retter (
 rettnummer CHAR(10)  NOT NULL,
 navn CHAR(10)  NOT NULL, 
+beskrivelse CHAR(30),
+ingredienser CHAR(30),
+kalorier INTEGER,
+vekt INTEGER,
+pris INTEGER,
 CONSTRAINT retter_PK PRIMARY KEY(rettnummer)
 );
 
