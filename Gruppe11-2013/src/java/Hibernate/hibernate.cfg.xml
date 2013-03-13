@@ -10,5 +10,21 @@
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
+    <mapping resource="domain/Retter.hbm.xml"/>
+    <mapping resource="domain/Annet.hbm.xml"/>
+    <mapping resource="domain/Utkjoring.hbm.xml"/>
+    <mapping resource="domain/Ordre.hbm.xml"/>
+    <mapping resource="domain/Selskapkunde.hbm.xml"/>
+    <mapping resource="domain/Sjoforer.hbm.xml"/>
+    <mapping resource="domain/Salg.hbm.xml"/>
+    <mapping resource="domain/Rolle.hbm.xml"/>
+    <mapping resource="domain/Administrator.hbm.xml"/>
+    <mapping resource="domain/Utkjoringsbil.hbm.xml"/>
+    <mapping resource="domain/Ordretabell.hbm.xml"/>
+    <mapping resource="domain/Selskaper.hbm.xml"/>
+    <mapping resource="domain/Bruker.hbm.xml"/>
+    <mapping resource="domain/Bosted.hbm.xml"/>
+    <mapping resource="domain/Selgere.hbm.xml"/>
+    <mapping resource="domain/Kunde.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

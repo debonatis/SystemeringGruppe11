@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13.mar.2013 17:31:34 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="domain.Ordre" table="ORDRE" schema="WAPLJ">
+        <composite-id name="id" class="domain.OrdreId">
+            <key-property name="brukernavn" type="string">
+                <column name="BRUKERNAVN" length="10" />
+            </key-property>
+            <key-property name="salgsnummer" type="string">
+                <column name="SALGSNUMMER" length="10" />
+            </key-property>
+        </composite-id>
+        <property name="datoendret" type="date">
+            <column name="DATOENDRET" length="10" />
+        </property>
+        <property name="datolevert" type="date">
+            <column name="DATOLEVERT" length="10" />
+        </property>
+        <property name="bekreftet" type="date">
+            <column name="BEKREFTET" length="10" />
+        </property>
+        <property name="betaltstatus" type="string">
+            <column name="BETALTSTATUS" length="10" />
+        </property>
+        <property name="selskapnr" type="java.lang.Integer">
+            <column name="SELSKAPNR" />
+        </property>
+    </class>
+</hibernate-mapping>

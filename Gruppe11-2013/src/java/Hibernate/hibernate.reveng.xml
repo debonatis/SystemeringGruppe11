@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-schema="WAPLJ"/>
+  <table-filter match-name="UTKJORING"/>
+  <table-filter match-name="BRUKER"/>
+  <table-filter match-name="ADMINISTRATOR"/>
+  <table-filter match-name="SALG"/>
+  <table-filter match-name="SJOFORER"/>
+  <table-filter match-name="SELGERE"/>
+  <table-filter match-name="ORDRE"/>
+  <table-filter match-name="SELSKAPKUNDE"/>
+  <table-filter match-name="ORDRETABELL"/>
+  <table-filter match-name="UTKJORINGSBIL"/>
+  <table-filter match-name="KUNDE"/>
+  <table-filter match-name="ROLLE"/>
+  <table-filter match-name="ANNET"/>
+  <table-filter match-name="BOSTED"/>
+  <table-filter match-name="RETTER"/>
+  <table-filter match-name="SELSKAPER"/>
+</hibernate-reverse-engineering>

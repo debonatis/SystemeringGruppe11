@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13.mar.2013 17:31:34 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="domain.Ordretabell" table="ORDRETABELL" schema="WAPLJ">
+        <composite-id name="id" class="domain.OrdretabellId">
+            <key-property name="salgsnummer" type="string">
+                <column name="SALGSNUMMER" length="10" />
+            </key-property>
+            <key-property name="selgerbrukernavn" type="string">
+                <column name="SELGERBRUKERNAVN" length="10" />
+            </key-property>
+            <key-property name="kundebrukernavn" type="string">
+                <column name="KUNDEBRUKERNAVN" length="10" />
+            </key-property>
+        </composite-id>
+        <property name="rettnummer" type="string">
+            <column name="RETTNUMMER" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

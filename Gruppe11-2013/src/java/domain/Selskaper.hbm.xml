@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13.mar.2013 17:31:34 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="domain.Selskaper" table="SELSKAPER" schema="WAPLJ">
+        <id name="selskapnr" type="int">
+            <column name="SELSKAPNR" />
+            <generator class="assigned" />
+        </id>
+        <property name="avslag" type="java.lang.Integer">
+            <column name="AVSLAG" />
+        </property>
+        <property name="akkumulertsalg" type="java.lang.Integer">
+            <column name="AKKUMULERTSALG" />
+        </property>
+    </class>
+</hibernate-mapping>

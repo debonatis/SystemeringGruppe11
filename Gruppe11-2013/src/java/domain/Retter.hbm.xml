@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13.mar.2013 17:31:34 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="domain.Retter" table="RETTER" schema="WAPLJ">
+        <id name="rettnummer" type="string">
+            <column name="RETTNUMMER" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="navn" type="string">
+            <column name="NAVN" length="10" not-null="true" />
+        </property>
+        <property name="beskrivelse" type="string">
+            <column name="BESKRIVELSE" length="30" />
+        </property>
+        <property name="ingredienser" type="string">
+            <column name="INGREDIENSER" length="30" />
+        </property>
+        <property name="kalorier" type="java.lang.Integer">
+            <column name="KALORIER" />
+        </property>
+        <property name="vekt" type="java.lang.Integer">
+            <column name="VEKT" />
+        </property>
+        <property name="pris" type="java.lang.Integer">
+            <column name="PRIS" />
+        </property>
+    </class>
+</hibernate-mapping>

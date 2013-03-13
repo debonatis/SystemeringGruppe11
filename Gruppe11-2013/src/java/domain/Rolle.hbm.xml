@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13.mar.2013 17:31:34 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="domain.Rolle" table="ROLLE" schema="WAPLJ">
+        <composite-id name="id" class="domain.RolleId">
+            <key-property name="brukernavn" type="string">
+                <column name="BRUKERNAVN" length="10" />
+            </key-property>
+            <key-property name="rollen" type="string">
+                <column name="ROLLEN" length="10" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

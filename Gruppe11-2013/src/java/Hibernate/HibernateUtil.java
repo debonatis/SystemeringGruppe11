@@ -1,3 +1,5 @@
+package Hibernate;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -12,7 +14,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
  *
  * @author deb
  */
-public class NewHibernateUtil {
+public class HibernateUtil {
 
     private static final SessionFactory sessionFactory;
     
