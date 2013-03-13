@@ -8,14 +8,14 @@ package repository;
  *
  * @author deb
  */
-import domain.Book;
+import domain.Rett;
 import java.util.List;
 
 
 
-public interface BookRepository {
+public interface RettRepository {
 
-        public void createNew(Book book);
+        public void createNew(Rett rett);
         
-        public List<Book> findAll();
+        public List<Rett> findAlt();
 }

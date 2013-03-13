@@ -12,41 +12,41 @@ package view;
  */
 
 import com.google.inject.Inject;
-import domain.Book;
+import domain.Rett;
 import java.awt.event.ActionEvent;
 import org.primefaces.optimus.application.FacesMessages;
 import org.primefaces.optimus.config.Scope;
 import org.primefaces.optimus.config.annotations.Controller;
-import repository.BookRepository;
+import repository.RettRepository;
 
 
 @Controller(name="createBookController", scope=Scope.REQUEST)
-public class CreateBookController {
+public class LagRettController {
 
-        private Book book = new Book();
+        private Rett rett = new Rett();
         
-        private BookRepository bookRepository;
+        private RettRepository bookRepository;
         
         @Inject 
         private FacesMessages messages;
         
         @Inject
-        public CreateBookController(BookRepository bookRepository) {
+        public LagRettController(RettRepository bookRepository) {
                 this.bookRepository = bookRepository;
         }
 
-        public Book getBook() {
-                return book;
+        public Rett getBook() {
+                return rett;
         }
-        public void setBook(Book book) {
-                this.book = book;
+        public void setBook(Rett rett) {
+                this.rett = rett;
         }
         
         public void save(ActionEvent actionEvent) {
-                bookRepository.createNew(book);
+                bookRepository.createNew(rett);
                 
-                messages.addInfo("Completed", book.getTitle() + " is saved");
+                messages.addInfo("Completed", rett.getNavn() + " is saved");
                 
-                book = new Book();
+                rett = new Rett();
         }
 }

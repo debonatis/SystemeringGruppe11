@@ -8,32 +8,28 @@ package repository;
  *
  * @author deb
  */
-import java.util.List;
-
-import javax.persistence.EntityManager;
-
-
-
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.wideplay.warp.persist.Transactional;
-import domain.Book;
+import domain.Rett;
+import java.util.List;
+import javax.persistence.EntityManager;
 
-public class BookRepositoryJPA implements BookRepository {
+public class RettRepositoryJPA implements RettRepository {
         
         @Inject 
         Provider<EntityManager> em; 
         
         @Transactional
     @Override
-        public void createNew(Book book) {
-                em.get().persist(book);
+        public void createNew(Rett rett) {
+                em.get().persist(rett);
         }
 
         @SuppressWarnings("unchecked")
     @Override
-        public List<Book> findAll() {
-                return em.get().createQuery("from Book").getResultList();
+        public List<Rett> findAlt() {
+                return em.get().createQuery("fra Rett").getResultList();
         }
 }
 

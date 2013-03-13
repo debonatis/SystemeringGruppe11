@@ -11,13 +11,13 @@ package application;
 
 
 import com.google.inject.AbstractModule;
-import repository.BookRepository;
-import repository.BookRepositoryJPA;
+import repository.RettRepository;
+import repository.RettRepositoryJPA;
 
 public class RepositoryModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        binder().bind(BookRepository.class).to(BookRepositoryJPA.class);
+        binder().bind(RettRepository.class).to(RettRepositoryJPA.class);
     }
 }
