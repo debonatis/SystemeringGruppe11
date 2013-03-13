@@ -1,9 +1,9 @@
 DROP TABLE administrator;
 DROP TABLE annet;
-DROP TABLE UTKJØRING;
-DROP TABLE UTKJØRINGSBIL;
+DROP TABLE UTKJORING;
+DROP TABLE UTKJORINGSBIL;
 DROP TABLE ordretabell;
-DROP TABLE sjåfører;
+DROP TABLE sjoforer;
 DROP TABLE ordre;
 DROP TABLE selgere;
 DROP TABLE salg;
@@ -46,11 +46,11 @@ akkumulertSalg INTEGER,
 CONSTRAINT selskaper_PK PRIMARY KEY(selskapnr)
 );
 
-CREATE TABLE utkjøringsBil (
+CREATE TABLE utkjoringsBil (
 bilnr INTEGER GENERATED ALWAYS AS IDENTITY, 
 regnummer CHAR(10)  NOT NULL, 
 status CHAR(10)  NOT NULL, 
-CONSTRAINT utkjøringsBil_PK PRIMARY KEY(bilnr)
+CONSTRAINT utkjoringsBil_PK PRIMARY KEY(bilnr)
 );
 
 CREATE TABLE selskapKunde (
@@ -59,13 +59,13 @@ selskapnr INTEGER NOT NULL, --(FK2 - SELSKAPER)
 CONSTRAINT selskapKunde_PK PRIMARY KEY(brukernavn, selskapnr)
 );
 
-CREATE TABLE utkjøring (
+CREATE TABLE utkjoring (
 brukernavn CHAR(10)  NOT NULL, --(FK1 - ORDRE)
 salgsnummer CHAR(10)  NOT NULL, --(FK2 - ORDRE)
 bilnr INTEGER NOT NULL, --(FK3 - UTKJØRINGSBIL)
-sjåførBrukernavn CHAR(10)  NOT NULL, --(FK4 - SJÅFØRER)
-utkørinKogstatus VARCHAR(10),  
-CONSTRAINT utkjøring_PK PRIMARY KEY(brukernavn, salgsnummer, bilnr, sjåførBrukernavn)
+sjoforBrukernavn CHAR(10)  NOT NULL, --(FK4 - SJÅFØRER)
+utkorinKogstatus VARCHAR(10),  
+CONSTRAINT utkjoring_PK PRIMARY KEY(brukernavn, salgsnummer, bilnr, sjoforBrukernavn)
 );
 
 CREATE TABLE salg (
@@ -75,10 +75,10 @@ CONSTRAINT salg_PK PRIMARY KEY(salgsnummer)
 );
 
 
-CREATE TABLE sjåfører (
+CREATE TABLE sjoforer (
 brukernavn CHAR(10)  NOT NULL, --(FK1 - BRUKER)
-Førekortklasse CHAR(10)  NOT NULL, 
-CONSTRAINT sjåfører_PK PRIMARY KEY(brukernavn)
+Forekortklasse CHAR(10)  NOT NULL, 
+CONSTRAINT sjoforer_PK PRIMARY KEY(brukernavn)
 );
 
 CREATE TABLE ordre (
@@ -130,7 +130,7 @@ CONSTRAINT selgere_PK PRIMARY KEY(brukernavn)
 
 CREATE TABLE annet (
 brukernavn CHAR(10)  NOT NULL, --(FK1 - BRUKER)
-fastlønn CHAR(10), 
+fastlonn CHAR(10), 
 CONSTRAINT annet_PK PRIMARY KEY(brukernavn)
 );
 
@@ -155,20 +155,20 @@ ALTER TABLE selskapKunde
 ADD CONSTRAINT selskaper__FK1 FOREIGN KEY (selskapnr)
 REFERENCES selskaper (selskapnr);
 
-ALTER TABLE utkjøring  
-ADD CONSTRAINT ordre_utkjøring_FK1 FOREIGN KEY (brukernavn, salgsnummer)
+ALTER TABLE utkjoring  
+ADD CONSTRAINT ordre_utkjoring_FK1 FOREIGN KEY (brukernavn, salgsnummer)
 REFERENCES ordre (brukernavn, salgsnummer);
 
-ALTER TABLE utkjøring  
-ADD CONSTRAINT utkjøringsBil_utkjøring_FK1 FOREIGN KEY (bilnr)
-REFERENCES utkjøringsBil (bilnr);
+ALTER TABLE utkjoring  
+ADD CONSTRAINT utkjoringsBil_utkjoring_FK1 FOREIGN KEY (bilnr)
+REFERENCES utkjoringsBil (bilnr);
 
-ALTER TABLE utkjøring  
-ADD CONSTRAINT sjåfører_utkjøring_FK1 FOREIGN KEY (sjåførBrukernavn)
-REFERENCES sjåfører (brukernavn);
+ALTER TABLE utkjoring  
+ADD CONSTRAINT sjoforer_utkjoring_FK1 FOREIGN KEY (sjoforBrukernavn)
+REFERENCES sjoforer (brukernavn);
 
-ALTER TABLE sjåfører  
-ADD CONSTRAINT bruker_sjåfører_FK1 FOREIGN KEY (brukernavn)
+ALTER TABLE sjoforer  
+ADD CONSTRAINT bruker_sjoforer_FK1 FOREIGN KEY (brukernavn)
 REFERENCES bruker (brukernavn);
 
 ALTER TABLE ordre  
@@ -216,11 +216,11 @@ INSERT INTO bosted VALUES (7050,'Trondheim');
 INSERT INTO bosted VALUES (7052,'Trondheim');
 INSERT INTO bosted VALUES (7036,'Trondheim');
 
-INSERT INTO bruker VALUES ('martinB','asdf1234','Martin','Bakkmyr','Blåklokkeveien 18B','lol@lol.com'
+INSERT INTO bruker VALUES ('martinB','asdf1234','Martin','Bakkmyr','Bloklokkeveien 18B','lol@lol.com'
 ,13377331,7050);
 INSERT INTO bruker VALUES ('simonD','asdf1234','Simon','Dehli','Solsiden 1A','lol@lol.com'
 ,13377331,7018);
-INSERT INTO bruker VALUES ('jørgenO','asdf1234','Jørgen','Olsen','Blåklokkeveien 18B','lol@lol.com'
+INSERT INTO bruker VALUES ('jorgenO','asdf1234','Jorgen','Olsen','Bloklokkeveien 18B','lol@lol.com'
 ,13377331,7050);
 INSERT INTO bruker VALUES ('martinA','asdf1234','Martin','Almvik','Lolz 1','lol@lol.com'
 ,13377331,7052);
@@ -228,7 +228,7 @@ INSERT INTO bruker VALUES ('mikaelS','asdf1234','Mikael','Solstad','Lolz 2','lol
 ,13377331,7052);
 
 INSERT INTO rolle VALUES ('simonD', 'admin');
-INSERT INTO rolle VALUES ('jørgenO', 'Sjåfør');
+INSERT INTO rolle VALUES ('jorgenO', 'Sjofor');
 INSERT INTO rolle VALUES ('martinB', 'Sjef');
 INSERT INTO rolle VALUES ('martinA', 'Kunde');
 INSERT INTO rolle VALUES ('mikaelS', 'Bedrift');
